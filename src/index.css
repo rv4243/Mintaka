@@ -90,9 +90,10 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scroll-padding-top: 86px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -113,6 +114,7 @@ body {
   flex-direction: column;
   position: relative;
   text-align: left;
+  overflow-x: hidden;
 }
 
 /* Base Headings */
@@ -176,5 +178,11 @@ button, input, textarea, select {
 @media (max-width: 640px) {
   .container, .container-sm {
     width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 380px) {
+  .container, .container-sm {
+    width: calc(100% - 24px);
   }
 }

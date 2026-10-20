@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Search, Filter, Eye, Send, FileSpreadsheet, RotateCcw, ChevronDown } from "lucide-react";
+import { Search, Filter, Eye, Send, FileSpreadsheet, RotateCcw, ChevronDown, CheckCircle2 } from "lucide-react";
 import { TECHNICAL_SPEC_DATA } from "../data/polymerData";
 import GradeDetailModal from "./GradeDetailModal";
 
@@ -67,6 +67,12 @@ export default function TechnicalSpecsTable({ selectedFamily = "ALL", onSelectFa
     if (onSelectFamily) onSelectFamily("ALL");
   };
 
+  const handleQuoteClick = (grade) => {
+    if (onQuoteGrade) onQuoteGrade(grade);
+    const contactEl = document.getElementById("contact");
+    if (contactEl) contactEl.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="specifications" className="section section--light specs-section">
       <div className="container">
@@ -87,9 +93,9 @@ export default function TechnicalSpecsTable({ selectedFamily = "ALL", onSelectFa
           <div className="specs-tabs" role="tablist" aria-label="Filter by polymer family">
             {[
               { id: "ALL", label: "All Polymers", count: TECHNICAL_SPEC_DATA.length },
-              { id: "PP", label: "Polypropylene (PP)", count: 4 },
-              { id: "PE", label: "Polyethylene (PE)", count: 4 },
-              { id: "PVC", label: "Polyvinyl Chloride (PVC)", count: 3 },
+              { id: "PP", label: "PP Resins", count: 4 },
+              { id: "PE", label: "PE Resins", count: 4 },
+              { id: "PVC", label: "PVC Resins", count: 3 },
             ].map((tab) => {
               const isActive = activeFamily === tab.id;
               return (
@@ -168,80 +174,136 @@ export default function TechnicalSpecsTable({ selectedFamily = "ALL", onSelectFa
             Showing <strong>{filteredGrades.length}</strong> of {TECHNICAL_SPEC_DATA.length} verified grades
           </span>
           <span className="specs-hint">
-            Click &ldquo;View TDS&rdquo; for ASTM test standards or &ldquo;Quote&rdquo; to populate the RFQ form.
+            Tap &ldquo;TDS&rdquo; for full test properties or &ldquo;Quote&rdquo; to populate the RFQ form.
           </span>
         </div>
 
-        {/* Table View */}
+        {/* Desktop / Laptop Table View */}
         {filteredGrades.length > 0 ? (
-          <div className="table-responsive">
-            <table className="specs-table" aria-label="Polymer Technical Specifications">
-              <thead>
-                <tr>
-                  <th scope="col" className="th--grade">Grade Code</th>
-                  <th scope="col" className="th--type">Resin Sub-Type</th>
-                  <th scope="col" className="th--mfi">MFI / K-Value</th>
-                  <th scope="col" className="th--density">Density</th>
-                  <th scope="col" className="th--proc">Recommended Process</th>
-                  <th scope="col" className="th--app">Primary Applications</th>
-                  <th scope="col" className="th--action">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredGrades.map((g) => (
-                  <tr key={g.id} className="specs-tr">
-                    <td className="td--grade">
-                      <div className="grade-badge-group">
-                        <span className={`family-badge family-badge--${g.family.toLowerCase()}`}>
-                          {g.family}
-                        </span>
-                        <strong className="grade-code-text">{g.gradeCode}</strong>
-                      </div>
-                    </td>
-                    <td className="td--type">{g.type}</td>
-                    <td className="td--mfi">
-                      <code className="tech-val">{g.mfi}</code>
-                    </td>
-                    <td className="td--density">
-                      <code className="tech-val">{g.density}</code>
-                    </td>
-                    <td className="td--proc">{g.processing}</td>
-                    <td className="td--app">
-                      <span className="app-summary">{g.applications}</span>
-                    </td>
-                    <td className="td--action">
-                      <div className="action-button-group">
-                        <button
-                          type="button"
-                          className="btn-table btn-table--view"
-                          onClick={() => handleOpenModal(g)}
-                          title={`View TDS for ${g.gradeCode}`}
-                          aria-label={`View full technical data sheet for ${g.gradeCode}`}
-                        >
-                          <Eye size={14} />
-                          <span>TDS</span>
-                        </button>
-                        <button
-                          type="button"
-                          className="btn-table btn-table--quote"
-                          onClick={() => {
-                            if (onQuoteGrade) onQuoteGrade(g);
-                            const contactEl = document.getElementById("contact");
-                            if (contactEl) contactEl.scrollIntoView({ behavior: "smooth" });
-                          }}
-                          title={`Request quote for ${g.gradeCode}`}
-                          aria-label={`Request quote for ${g.gradeCode}`}
-                        >
-                          <Send size={13} />
-                          <span>Quote</span>
-                        </button>
-                      </div>
-                    </td>
+          <>
+            <div className="table-responsive specs-table-container">
+              <table className="specs-table" aria-label="Polymer Technical Specifications">
+                <thead>
+                  <tr>
+                    <th scope="col" className="th--grade">Grade Code</th>
+                    <th scope="col" className="th--type">Resin Sub-Type</th>
+                    <th scope="col" className="th--mfi">MFI / K-Value</th>
+                    <th scope="col" className="th--density">Density</th>
+                    <th scope="col" className="th--proc">Recommended Process</th>
+                    <th scope="col" className="th--app">Primary Applications</th>
+                    <th scope="col" className="th--action">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {filteredGrades.map((g) => (
+                    <tr key={g.id} className="specs-tr">
+                      <td className="td--grade">
+                        <div className="grade-badge-group">
+                          <span className={`family-badge family-badge--${g.family.toLowerCase()}`}>
+                            {g.family}
+                          </span>
+                          <strong className="grade-code-text">{g.gradeCode}</strong>
+                        </div>
+                      </td>
+                      <td className="td--type">{g.type}</td>
+                      <td className="td--mfi">
+                        <code className="tech-val">{g.mfi}</code>
+                      </td>
+                      <td className="td--density">
+                        <code className="tech-val">{g.density}</code>
+                      </td>
+                      <td className="td--proc">{g.processing}</td>
+                      <td className="td--app">
+                        <span className="app-summary">{g.applications}</span>
+                      </td>
+                      <td className="td--action">
+                        <div className="action-button-group">
+                          <button
+                            type="button"
+                            className="btn-table btn-table--view"
+                            onClick={() => handleOpenModal(g)}
+                            title={`View TDS for ${g.gradeCode}`}
+                            aria-label={`View full technical data sheet for ${g.gradeCode}`}
+                          >
+                            <Eye size={14} />
+                            <span>TDS</span>
+                          </button>
+                          <button
+                            type="button"
+                            className="btn-table btn-table--quote"
+                            onClick={() => handleQuoteClick(g)}
+                            title={`Request quote for ${g.gradeCode}`}
+                            aria-label={`Request quote for ${g.gradeCode}`}
+                          >
+                            <Send size={13} />
+                            <span>Quote</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile-Optimized Native Cards View */}
+            <div className="specs-mobile-cards" aria-label="Polymer Grades Cards">
+              {filteredGrades.map((g) => (
+                <div key={g.id} className="specs-m-card">
+                  <div className="specs-m-card__head">
+                    <div className="specs-m-card__title-box">
+                      <span className={`family-badge family-badge--${g.family.toLowerCase()}`}>
+                        {g.family}
+                      </span>
+                      <strong className="specs-m-card__code">{g.gradeCode}</strong>
+                    </div>
+                    <span className="specs-m-card__type">{g.type}</span>
+                  </div>
+
+                  <div className="specs-m-card__specs-grid">
+                    <div className="specs-m-card__spec">
+                      <span className="specs-m-card__label">MFI / K-Value</span>
+                      <code className="tech-val">{g.mfi}</code>
+                    </div>
+                    <div className="specs-m-card__spec">
+                      <span className="specs-m-card__label">Density / Bulk</span>
+                      <code className="tech-val">{g.density}</code>
+                    </div>
+                  </div>
+
+                  <div className="specs-m-card__details">
+                    <div className="specs-m-card__row">
+                      <span className="specs-m-card__row-label">Process:</span>
+                      <span className="specs-m-card__row-val">{g.processing}</span>
+                    </div>
+                    <div className="specs-m-card__row">
+                      <span className="specs-m-card__row-label">Uses:</span>
+                      <span className="specs-m-card__row-val">{g.applications}</span>
+                    </div>
+                  </div>
+
+                  <div className="specs-m-card__actions">
+                    <button
+                      type="button"
+                      className="btn btn--secondary btn--sm btn--full"
+                      onClick={() => handleOpenModal(g)}
+                    >
+                      <Eye size={15} />
+                      <span>View TDS Specs</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn--primary btn--sm btn--full"
+                      onClick={() => handleQuoteClick(g)}
+                    >
+                      <Send size={15} />
+                      <span>Request Quote</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         ) : (
           <div className="specs-empty-state">
             <div className="specs-empty-icon">

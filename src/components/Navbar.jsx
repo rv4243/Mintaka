@@ -28,6 +28,18 @@ export default function Navbar({ onQuoteClick }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock background scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const handleNavClick = (href) => {
     setMobileMenuOpen(false);
     if (href === "#contact" && onQuoteClick) {
