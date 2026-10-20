@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#0a1a2f"/>
+  <polygon points="16,5 26,11 26,21 16,27 6,21 6,11" stroke="#14b8a6" stroke-width="2" stroke-linejoin="round" fill="rgba(20, 184, 166, 0.15)"/>
+  <circle cx="16" cy="16" r="3.5" fill="#14b8a6"/>
+  <line x1="16" y1="5" x2="16" y2="12.5" stroke="#14b8a6" stroke-width="1.5"/>
+  <line x1="26" y1="21" x2="19" y2="17.5" stroke="#14b8a6" stroke-width="1.5"/>
+  <line x1="6" y1="21" x2="13" y2="17.5" stroke="#14b8a6" stroke-width="1.5"/>
+</svg>
