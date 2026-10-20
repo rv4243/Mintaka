@@ -97,9 +97,11 @@ export default function Navbar({ onQuoteClick }) {
             href="#contact"
             className="btn btn--primary btn--sm nav-quote-btn"
             onClick={() => handleNavClick("#contact")}
+            title="Request Quote"
           >
-            <span>Request Quote</span>
-            <ArrowRight size={15} aria-hidden="true" />
+            <span className="nav-quote-btn__text">Request Quote</span>
+            <span className="nav-quote-btn__text-mobile">Quote</span>
+            <ArrowRight size={14} aria-hidden="true" />
           </a>
 
           {/* Mobile Menu Toggle */}
