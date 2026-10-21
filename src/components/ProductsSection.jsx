@@ -29,9 +29,9 @@ export default function ProductsSection({ onSelectFamily, onQuoteFamily }) {
           <div className="section-badge">
             <span>Portfolio</span>
           </div>
-          <h2 className="section-title">Core Polymer Resins & Families</h2>
+          <h2 className="section-title">Core Polymer Resins</h2>
           <p className="section-subtitle">
-            Engineered raw material grades with exact melt flow rates, density profiles, and structural performance.
+            Virgin and compounding grades with guaranteed MFI, density, and structural specs.
           </p>
         </div>
 

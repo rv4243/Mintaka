@@ -19,9 +19,9 @@ export default function IndustriesSection({ onSelectGrade }) {
             <Factory size={14} aria-hidden="true" />
             <span>Market Applications</span>
           </div>
-          <h2 className="section-title text-white">Industries Powered by Mintaka Resins</h2>
+          <h2 className="section-title text-white">Target Industries</h2>
           <p className="section-subtitle text-slate-300">
-            Tailored molecular architectures meeting rigorous international benchmarks across critical sectors.
+            Certified polymer grades engineered for high-speed converting and demanding sector standards.
           </p>
         </div>
 

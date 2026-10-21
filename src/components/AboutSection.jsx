@@ -1,28 +1,35 @@
-import { FlaskConical, Boxes, SlidersHorizontal, ShieldCheck, MapPin, Award } from "lucide-react";
+import { FlaskConical, Boxes, SlidersHorizontal, ShieldCheck, MapPin, Award, CheckCircle2 } from "lucide-react";
 import { COMPANY } from "../data/polymerData";
 
 export default function AboutSection() {
   const highlights = [
     {
       icon: FlaskConical,
-      title: "In-House QA Testing Lab",
-      desc: "Every polymer batch undergoes rigorous MFR/MFI, density, tensile modulus, and ash content verification before dispatch.",
+      title: "In-House QA Lab",
+      desc: "Batch MFI, density, tensile strength, and ash content verified before dispatch.",
     },
     {
       icon: Boxes,
-      title: "Guaranteed Buffer Reserves",
-      desc: "Strategically stocked warehouse depots eliminate resin shortages, safeguarding continuous plant production cycles.",
+      title: "Guaranteed Buffer Stock",
+      desc: "Dedicated warehouse reserves protecting your plant from line-down events.",
     },
     {
       icon: SlidersHorizontal,
-      title: "Process & Mold Engineering",
-      desc: "Our polymer chemists collaborate with converters on mold shrinkage, cycle optimization, and masterbatch compounding.",
+      title: "Mold & Process Support",
+      desc: "Polymer chemists assisting with mold shrinkage, cycle times, and compounding.",
     },
     {
       icon: ShieldCheck,
-      title: "Comprehensive Compliance",
-      desc: "Full conformance with BIS standards, REACH, RoHS, FDA food-contact criteria, and ISO quality management systems.",
+      title: "Full Regulatory Compliance",
+      desc: "BIS, REACH, RoHS, FDA food-contact, and ISO certified quality systems.",
     },
+  ];
+
+  const quickPillStats = [
+    { label: "Est. 1994" },
+    { label: "180k+ MT/Yr Volume" },
+    { label: "60+ Export Markets" },
+    { label: "ISO 9001 Certified" },
   ];
 
   return (
@@ -31,33 +38,65 @@ export default function AboutSection() {
         <div className="section-head">
           <div className="section-badge">
             <Award size={14} aria-hidden="true" />
-            <span>Company Background</span>
+            <span>Company Overview</span>
           </div>
           <h2 className="section-title">Reliable Polymer Supply for Industrial Converters</h2>
           <p className="section-subtitle">
-            Three decades of material science excellence, supply security, and application engineering.
+            Three decades of material science expertise, supply security, and engineering support.
           </p>
         </div>
 
         <div className="about-grid">
           <div className="about-text-col">
             <h3 className="about-heading">
-              Powering manufacturing lines with pure, lot-tested polymer resins since 1994.
+              Industrial Polymer Distribution Built for Speed & Precision
             </h3>
             <p className="about-lead">
-              Headquartered at the major manufacturing and industrial corridor of Hosur, Tamil Nadu, <strong>{COMPANY.name}</strong> operates as a trusted partner to injection molders, film extruders, blow molders, and compounding facilities throughout India and across 60+ export destinations.
+              Direct factory allocations of <strong>PP, PE & PVC</strong> resins for molders, extruders, and compounding plants across India and worldwide.
             </p>
-            <p className="about-body">
-              We specialize in the strategic distribution, technical qualification, and customized bulk delivery of primary resin families—Polypropylene (PP), Polyethylene (HDPE, LDPE, LLDPE), and Polyvinyl Chloride (PVC). Whether your operations demand tight MFI tolerances for high-speed multi-cavity tooling or certified UV-stabilized grades for agricultural irrigation, our distribution network delivers dependable consistency.
-            </p>
-            <p className="about-body">
-              Unlike generic resin traders, Mintaka pairs commodity volume with dedicated material scientists. We work side-by-side with your shop-floor production managers to fine-tune processing parameters, resolve warpage or weld-line anomalies, and achieve seamless sustainability transitions.
-            </p>
+
+            <div className="about-points">
+              <div className="about-point">
+                <CheckCircle2 size={18} className="about-point-icon" aria-hidden="true" />
+                <div>
+                  <strong>Hosur Manufacturing Hub:</strong> SIPCOT Phase II warehouse terminal with rapid multi-modal dispatch across southern industrial corridors.
+                </div>
+              </div>
+
+              <div className="about-point">
+                <CheckCircle2 size={18} className="about-point-icon" aria-hidden="true" />
+                <div>
+                  <strong>Batch-to-Batch Consistency:</strong> Guaranteed ±0.2 MFI tolerance on all dispatches, verified by lot-specific Certificate of Analysis (CoA).
+                </div>
+              </div>
+
+              <div className="about-point">
+                <CheckCircle2 size={18} className="about-point-icon" aria-hidden="true" />
+                <div>
+                  <strong>Buffer Allocation SLA:</strong> Rolling contracts and reserved stock that protect your facility against petrochemical price spikes.
+                </div>
+              </div>
+
+              <div className="about-point">
+                <CheckCircle2 size={18} className="about-point-icon" aria-hidden="true" />
+                <div>
+                  <strong>Application R&D Assistance:</strong> In-house technical support for mold shrinkage, cycle optimization, and recyclable mono-PE/PP transitions.
+                </div>
+              </div>
+            </div>
+
+            <div className="about-stats-row">
+              {quickPillStats.map((st) => (
+                <span key={st.label} className="about-stat-pill">
+                  {st.label}
+                </span>
+              ))}
+            </div>
 
             <div className="about-hq-badge">
               <MapPin className="about-hq-icon" size={20} aria-hidden="true" />
               <div>
-                <strong>Central Logistics & Compounding Terminal</strong>
+                <strong>Central Logistics Hub & Plant</strong>
                 <span>{COMPANY.address}</span>
               </div>
             </div>
@@ -81,10 +120,10 @@ export default function AboutSection() {
 
             <div className="about-quote-box">
               <p className="about-quote-text">
-                &ldquo;Our production uptime depends on zero batch variance. Mintaka has consistently delivered within ±0.2 MFI tolerance across 4 years of continuous container dispatches.&rdquo;
+                &ldquo;Mintaka has consistently delivered within ±0.2 MFI tolerance across 4 years of continuous container dispatches. Zero batch surprises.&rdquo;
               </p>
               <div className="about-quote-author">
-                — Senior Procurement Director, Automated Packaging Manufacturer
+                — Procurement Director, Automated Packaging Manufacturer
               </div>
             </div>
           </div>

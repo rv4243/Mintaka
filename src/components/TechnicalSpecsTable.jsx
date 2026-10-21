@@ -81,9 +81,9 @@ export default function TechnicalSpecsTable({ selectedFamily = "ALL", onSelectFa
             <FileSpreadsheet size={14} aria-hidden="true" />
             <span>Interactive Database</span>
           </div>
-          <h2 className="section-title">Technical Specifications & Resin Finder</h2>
+          <h2 className="section-title">Technical Specifications</h2>
           <p className="section-subtitle">
-            Filter our standard portfolio by polymer family, melt flow rate, density, or conversion process.
+            Search portfolio grades by melt flow, density, or conversion process.
           </p>
         </div>
 
@@ -121,7 +121,7 @@ export default function TechnicalSpecsTable({ selectedFamily = "ALL", onSelectFa
               <input
                 type="text"
                 className="specs-search__input"
-                placeholder="Search grade code (e.g. H030, B52A, K67), pipe, film, injection..."
+                placeholder="Search grade (e.g. H030, B52A, K67), pipe, film, molding..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 aria-label="Search polymer specifications"

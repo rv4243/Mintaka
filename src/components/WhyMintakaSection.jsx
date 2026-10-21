@@ -19,9 +19,9 @@ export default function WhyMintakaSection() {
             <Check size={14} aria-hidden="true" />
             <span>Competitive Advantage</span>
           </div>
-          <h2 className="section-title">Why Leading Converters Choose Mintaka</h2>
+          <h2 className="section-title">Why Converters Choose Mintaka</h2>
           <p className="section-subtitle">
-            Beyond resin supply: we provide technical consistency, continuous allocation, and logistics certainty.
+            Reliable allocation, tight MFI tolerances, and zero factory line downtime.
           </p>
         </div>
 
@@ -46,18 +46,18 @@ export default function WhyMintakaSection() {
         {/* Quality commitment strip */}
         <div className="why-assurance-bar">
           <div className="why-assurance-item">
-            <strong>Zero Off-Spec Compromise</strong>
-            <span>Continuous testing against ASTM & ISO mechanical standards.</span>
+            <strong>Zero Off-Spec Tolerance</strong>
+            <span>ASTM & ISO lot-tested with certified CoA.</span>
           </div>
           <div className="why-assurance-divider" aria-hidden="true" />
           <div className="why-assurance-item">
-            <strong>Buffer Inventory SLA</strong>
-            <span>Dedicated customer-reserved inventory for registered manufacturing partners.</span>
+            <strong>Guaranteed Buffer Stock</strong>
+            <span>Customer-reserved stock to prevent line stops.</span>
           </div>
           <div className="why-assurance-divider" aria-hidden="true" />
           <div className="why-assurance-item">
-            <strong>Shop-Floor Assistance</strong>
-            <span>On-site processing engineers available for tooling trials and cycle optimization.</span>
+            <strong>Direct Technical Support</strong>
+            <span>In-house engineers for tooling and mold trials.</span>
           </div>
         </div>
       </div>

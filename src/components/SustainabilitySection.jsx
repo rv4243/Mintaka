@@ -11,21 +11,21 @@ export default function SustainabilitySection() {
           <div className="sustainability-intro">
             <div className="section-badge section-badge--teal">
               <Leaf size={14} aria-hidden="true" />
-              <span>ESG & Responsible Manufacturing</span>
+              <span>ESG & Circular Economy</span>
             </div>
             <h2 className="section-title text-white">
-              Circular Polymer Solutions for a Low-Carbon Economy
+              Circular Polymer Solutions
             </h2>
             <p className="sustainability-lead">
-              The future of plastics demands proactive responsibility. Mintaka integrates verified post-consumer recycled (PCR) compounds, closed-loop packaging stewardship, and mono-material transition support without compromising tensile strength or processing efficiency.
+              Reduce carbon footprint and meet ESG requirements without sacrificing tensile strength, melt flow, or cycle times.
             </p>
 
             <div className="sustainability-bullet-box">
-              <h4 className="sustainability-box-title">Our Environmental Commitments:</h4>
+              <h4 className="sustainability-box-title">Key Commitments:</h4>
               <ul className="sustainability-box-list">
-                <li>Zero-pellet loss enforcement across all warehouse staging hubs (Operation Clean Sweep®).</li>
-                <li>ISO 14001 certified environmental mitigation and 100% industrial wastewater recycling.</li>
-                <li>Collaborative technical testing for multi-layer to mono-PE/PP recyclable pouch conversion.</li>
+                <li><strong>PCR Blends:</strong> Up to 50% certified recycled compound with virgin-equivalent performance.</li>
+                <li><strong>Zero Pellet Loss:</strong> Operation Clean Sweep® protocols across all warehouse docks.</li>
+                <li><strong>Mono-PE/PP Design:</strong> Drop-in formulations for 100% recyclable flexible packaging.</li>
               </ul>
             </div>
 

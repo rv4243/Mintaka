@@ -19,7 +19,7 @@ export default function FAQSection() {
           </div>
           <h2 className="section-title">Frequently Asked Questions</h2>
           <p className="section-subtitle">
-            Essential information regarding minimum orders, packaging configurations, and technical support.
+            Quick answers regarding MOQs, lot CoAs, packaging options, and plant trials.
           </p>
         </div>
 

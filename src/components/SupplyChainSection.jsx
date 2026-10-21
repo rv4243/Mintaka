@@ -8,22 +8,22 @@ export default function SupplyChainSection() {
     {
       step: "01",
       title: "Order Release",
-      desc: "Instant ERP verification against live warehouse buffer stocks.",
+      desc: "Instant ERP verification against live warehouse buffer.",
     },
     {
       step: "02",
       title: "CoA Verification",
-      desc: "Lot-specific mechanical and MFR testing before seal release.",
+      desc: "Batch MFI and density validation before seal release.",
     },
     {
       step: "03",
       title: "Palletizing & Seal",
-      desc: "Anti-slip stretch wrapped 25kg bags or sealed bulk trailers.",
+      desc: "Anti-slip shrink-wrapped 25kg bags or bulk tankers.",
     },
     {
       step: "04",
       title: "Telemetry Transit",
-      desc: "Continuous GPS tracking with real-time ETA notification.",
+      desc: "Live GPS route tracking with automated arrival alerts.",
     },
   ];
 
@@ -35,9 +35,9 @@ export default function SupplyChainSection() {
             <Truck size={14} aria-hidden="true" />
             <span>Logistics & Distribution</span>
           </div>
-          <h2 className="section-title">Agile Multi-Modal Supply Chain Network</h2>
+          <h2 className="section-title">Agile Multi-Modal Distribution</h2>
           <p className="section-subtitle">
-            Engineered logistics to eliminate raw material bottlenecks for high-throughput industrial plants.
+            Zero raw material bottlenecks with reserved buffers and live GPS transit tracking.
           </p>
         </div>
 
@@ -82,9 +82,9 @@ export default function SupplyChainSection() {
         {/* Logistics Assurance Callout */}
         <div className="supply-callout">
           <div className="supply-callout__left">
-            <h4>Need scheduled JIT (Just-in-Time) delivery contracts?</h4>
+            <h4>Need scheduled JIT delivery contracts?</h4>
             <p>
-              We offer structured monthly rolling allocations and consignment stock management at your plant premises for qualified volume converters.
+              We provide monthly rolling allocations and consignment buffer management for volume converters.
             </p>
           </div>
           <div className="supply-callout__right">

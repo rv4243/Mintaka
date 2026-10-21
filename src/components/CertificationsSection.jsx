@@ -56,9 +56,9 @@ CURRENT ACTIVE ACCREDITATIONS:
             <Award size={14} aria-hidden="true" />
             <span>Accreditations & Compliance</span>
           </div>
-          <h2 className="section-title">Verified International Quality Standards</h2>
+          <h2 className="section-title">Quality & Compliance Standards</h2>
           <p className="section-subtitle">
-            Our facilities, testing protocols, and distribution centers are certified by premier global registrar bodies.
+            Facilities, testing labs, and distribution hubs certified by premier global registrar bodies.
           </p>
         </div>
 
@@ -89,8 +89,8 @@ CURRENT ACTIVE ACCREDITATIONS:
           <div className="certs-download-info">
             <CheckCircle2 size={20} className="text-teal" />
             <div>
-              <strong>Looking to qualify Mintaka as an approved raw material vendor?</strong>
-              <p>Download our complete vendor compliance documentation, audit questionnaires, and ISO cert pack.</p>
+              <strong>Vendor Qualification Pack</strong>
+              <p>Download complete compliance documents, audit questionnaires, and ISO certificates.</p>
             </div>
           </div>
           <button

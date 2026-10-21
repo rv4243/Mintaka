@@ -26,14 +26,11 @@ export default function Hero({ onSelectFamily, onOpenRFQ }) {
 
         <h1 className="hero__title">
           High-Performance Polymers <br className="hero__br-desktop" />
-          <span className="hero__title-highlight">Engineered for Global Manufacturing.</span>
+          <span className="hero__title-highlight">Engineered for Zero Downtime.</span>
         </h1>
 
         <p className="hero__lead">
-          {COMPANY.name} supplies premium virgin and compounding-ready Polypropylene (PP),
-          Polyethylene (HDPE, LDPE, LLDPE), and Suspension PVC to converters worldwide.
-          Backed by 30+ years of technical polymer expertise, lot-traceable Certificates of
-          Analysis (CoA), and uninterrupted industrial allocation.
+          Direct factory allocation of certified <strong>PP, PE & PVC</strong> resins for injection molding, extrusion, and compounding. Guaranteed batch consistency, lot CoAs, and fast dispatch from our Hosur hub.
         </p>
 
         {/* Action CTAs */}

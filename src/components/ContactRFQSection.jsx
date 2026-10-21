@@ -79,9 +79,9 @@ Submitted via Mintaka Polymers Procurement Portal`;
             <MessageSquare size={14} aria-hidden="true" />
             <span>Commercial Inquiries</span>
           </div>
-          <h2 className="section-title">Request for Quotation & Technical Inquiries</h2>
+          <h2 className="section-title">Request for Quotation (RFQ)</h2>
           <p className="section-subtitle">
-            Specify your required polymer grade, tonnage, and destination port/plant. Our commercial sales desk responds within 4 business hours.
+            Get custom pricing, lot CoAs, and dispatch schedules. Response within 4 business hours.
           </p>
         </div>
 
@@ -91,7 +91,7 @@ Submitted via Mintaka Polymers Procurement Portal`;
             <div className="contact-info-card">
               <h3 className="contact-info-card__title">Sales & Procurement Desk</h3>
               <p className="contact-info-card__lead">
-                Reach out directly to our commercial polymer traders or submit the RFQ form for custom contract pricing and delivery schedules.
+                Contact our trading team directly or submit the RFQ for factory pricing.
               </p>
 
               <dl className="contact-dl">
