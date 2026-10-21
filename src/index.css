@@ -177,12 +177,12 @@ button, input, textarea, select {
 
 @media (max-width: 640px) {
   .container, .container-sm {
-    width: calc(100% - 32px);
+    width: calc(100% - 36px);
   }
 }
 
 @media (max-width: 380px) {
   .container, .container-sm {
-    width: calc(100% - 24px);
+    width: calc(100% - 28px);
   }
 }

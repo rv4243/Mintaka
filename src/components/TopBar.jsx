@@ -4,7 +4,7 @@ import { COMPANY } from "../data/polymerData";
 export default function TopBar() {
   return (
     <aside className="topbar" aria-label="Quick contact and company information">
-      <div className="container topbar__inner">
+      <div className="header-container topbar__inner">
         <div className="topbar__left">
           <span className="topbar__item">
             <MapPin className="topbar__icon" size={13} aria-hidden="true" />

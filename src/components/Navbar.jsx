@@ -49,7 +49,7 @@ export default function Navbar({ onQuoteClick }) {
 
   return (
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
-      <div className="container navbar__row">
+      <div className="header-container navbar__row">
         {/* Brand Logo */}
         <a href="#top" className="brand" aria-label={`${COMPANY.name} home`}>
           <div className="brand__symbol" aria-hidden="true">

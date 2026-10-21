@@ -218,6 +218,14 @@
    Header: TopBar & Navbar (Mobile-First Architecture)
    ========================================================================== */
 
+/* Header Container: Wider max-width & responsive padding to eliminate large empty corner voids */
+.header-container {
+  width: 100%;
+  max-width: 1560px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 3.2vw, 44px);
+}
+
 /* TopBar: Hidden by default on Mobile/Tablet to keep view clean */
 .topbar {
   display: none;
@@ -310,14 +318,13 @@
   align-items: center;
   justify-content: space-between;
   height: 62px;
-  gap: 8px;
-  width: 100%;
+  gap: 10px;
 }
 
 @media (min-width: 1181px) {
   .navbar__row {
     height: 72px;
-    gap: 12px;
+    gap: 16px;
   }
 }
 
