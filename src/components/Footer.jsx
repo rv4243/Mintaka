@@ -16,22 +16,11 @@ export default function Footer() {
           {/* Column 1: Company Profile */}
           <div className="footer__col footer__col--brand">
             <div className="brand brand--footer">
-              <div className="brand__symbol" aria-hidden="true">
-                <svg viewBox="0 0 40 40" width="28" height="28" fill="none">
-                  <polygon
-                    points="20,4 34,12 34,28 20,36 6,28 6,12"
-                    stroke="#14b8a6"
-                    strokeWidth="2.5"
-                    strokeLinejoin="round"
-                    fill="rgba(20, 184, 166, 0.15)"
-                  />
-                  <circle cx="20" cy="20" r="4.5" fill="#14b8a6" />
-                </svg>
-              </div>
-              <div className="brand__text">
-                <span className="brand__name brand__name--light">{COMPANY.name}</span>
-                <span className="brand__tag brand__tag--light">ADVANCED POLYMERS</span>
-              </div>
+              <img
+                src="/mintaka-logo-white.png"
+                alt={`${COMPANY.name} - Advanced Polymers`}
+                className="brand__logo-img brand__logo-img--footer"
+              />
             </div>
 
             <p className="footer__bio">

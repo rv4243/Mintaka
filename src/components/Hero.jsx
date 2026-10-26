@@ -1,5 +1,5 @@
 import { ArrowRight, FileSpreadsheet, ShieldCheck, CheckCircle2, ChevronRight, Sparkles } from "lucide-react";
-import { COMPANY, KEY_METRICS } from "../data/polymerData";
+import { KEY_METRICS } from "../data/polymerData";
 
 export default function Hero({ onSelectFamily, onOpenRFQ }) {
   const quickPills = [

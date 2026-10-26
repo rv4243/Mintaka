@@ -338,6 +338,37 @@
   flex-shrink: 0;
 }
 
+.brand__logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+  transition: opacity var(--transition-fast);
+}
+
+.brand__logo-img:hover {
+  opacity: 0.92;
+}
+
+@media (min-width: 768px) {
+  .brand__logo-img {
+    height: 44px;
+    max-width: 260px;
+  }
+}
+
+.brand__logo-img--drawer {
+  height: 34px;
+  max-width: 190px;
+}
+
+.brand__logo-img--footer {
+  height: 46px;
+  max-width: 260px;
+  margin-bottom: 12px;
+}
+
 .brand__symbol {
   width: 32px;
   height: 32px;

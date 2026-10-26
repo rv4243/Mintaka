@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight, Layers } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "../data/polymerData";
 
 export default function Navbar({ onQuoteClick }) {
@@ -50,27 +50,13 @@ export default function Navbar({ onQuoteClick }) {
   return (
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
       <div className="header-container navbar__row">
-        {/* Brand Logo */}
+        {/* Official Brand Logo */}
         <a href="#top" className="brand" aria-label={`${COMPANY.name} home`}>
-          <div className="brand__symbol" aria-hidden="true">
-            <svg viewBox="0 0 40 40" width="34" height="34" fill="none">
-              <polygon
-                points="20,4 34,12 34,28 20,36 6,28 6,12"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinejoin="round"
-                fill="rgba(13, 148, 136, 0.12)"
-              />
-              <circle cx="20" cy="20" r="4.5" fill="#0d9488" />
-              <line x1="20" y1="4" x2="20" y2="15.5" stroke="#0d9488" strokeWidth="2" />
-              <line x1="34" y1="28" x2="24" y2="22" stroke="#0d9488" strokeWidth="2" />
-              <line x1="6" y1="28" x2="16" y2="22" stroke="#0d9488" strokeWidth="2" />
-            </svg>
-          </div>
-          <div className="brand__text">
-            <span className="brand__name">{COMPANY.name}</span>
-            <span className="brand__tag">ENGINEERED RESINS</span>
-          </div>
+          <img
+            src="/mintaka-logo.png"
+            alt={`${COMPANY.name} - Engineered Resins`}
+            className="brand__logo-img"
+          />
         </a>
 
         {/* Desktop Navigation */}
@@ -121,10 +107,11 @@ export default function Navbar({ onQuoteClick }) {
       <div className={`mobile-drawer ${mobileMenuOpen ? "mobile-drawer--open" : ""}`} aria-hidden={!mobileMenuOpen}>
         <div className="mobile-drawer__header">
           <div className="brand brand--drawer">
-            <div className="brand__symbol" aria-hidden="true">
-              <Layers size={20} />
-            </div>
-            <span className="brand__name">{COMPANY.name}</span>
+            <img
+              src="/mintaka-logo.png"
+              alt={`${COMPANY.name}`}
+              className="brand__logo-img brand__logo-img--drawer"
+            />
           </div>
           <button
             type="button"

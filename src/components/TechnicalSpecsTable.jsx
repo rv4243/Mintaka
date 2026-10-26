@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Search, Filter, Eye, Send, FileSpreadsheet, RotateCcw, ChevronDown, CheckCircle2 } from "lucide-react";
+import { Search, Filter, Eye, Send, FileSpreadsheet, RotateCcw, ChevronDown } from "lucide-react";
 import { TECHNICAL_SPEC_DATA } from "../data/polymerData";
 import GradeDetailModal from "./GradeDetailModal";
 
