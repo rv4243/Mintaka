@@ -6,7 +6,7 @@ export default function ProductsSection({ onSelectFamily, onQuoteFamily }) {
     if (onSelectFamily) {
       onSelectFamily(familyCode);
     }
-    const tableEl = document.getElementById("specifications");
+    const tableEl = document.getElementById("materials") || document.getElementById("specifications");
     if (tableEl) {
       tableEl.scrollIntoView({ behavior: "smooth" });
     }

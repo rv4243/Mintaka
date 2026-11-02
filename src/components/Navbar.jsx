@@ -1,19 +1,29 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "../data/polymerData";
+import mintakaLogo from "../assets/mintaka-logo.png";
 
 export default function Navbar({ onQuoteClick }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 24);
 
-      // Simple active link spy
+      if (window.scrollY < 80) {
+        setActiveSection("home");
+        return;
+      }
+
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection("contact");
+        return;
+      }
+
       const sections = NAV_LINKS.map((link) => link.href.substring(1));
-      const scrollPos = window.scrollY + 140;
+      const scrollPos = window.scrollY + 160;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -28,7 +38,6 @@ export default function Navbar({ onQuoteClick }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock background scroll when mobile drawer is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -40,8 +49,37 @@ export default function Navbar({ onQuoteClick }) {
     };
   }, [mobileMenuOpen]);
 
-  const handleNavClick = (href) => {
+  const handleNavClick = (e, href) => {
+    if (e && e.preventDefault) e.preventDefault();
     setMobileMenuOpen(false);
+
+    if (href === "#home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, "", "#home");
+      }
+      return;
+    }
+
+    const targetId = href.startsWith("#") ? href.substring(1) : href;
+    const targetEl = document.getElementById(targetId);
+
+    if (targetEl) {
+      const isMobile = window.innerWidth <= 900;
+      const navOffset = isMobile ? 74 : 94;
+      const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navOffset;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth",
+      });
+
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, "", href);
+      }
+    }
+
     if (href === "#contact" && onQuoteClick) {
       onQuoteClick();
     }
@@ -49,13 +87,15 @@ export default function Navbar({ onQuoteClick }) {
 
   return (
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
-      <div className="header-container navbar__row">
+      <div className="container navbar__inner">
         {/* Official Brand Logo */}
-        <a href="#top" className="brand" aria-label={`${COMPANY.name} home`}>
+        <a href="#home" className="brand" aria-label={`${COMPANY.name} home`}>
           <img
-            src="/mintaka-logo.png"
+            src={mintakaLogo}
             alt={`${COMPANY.name} - Engineered Resins`}
             className="brand__logo-img"
+            width="170"
+            height="44"
           />
         </a>
 
@@ -69,7 +109,7 @@ export default function Navbar({ onQuoteClick }) {
                 key={link.label}
                 href={link.href}
                 className={`desktop-nav__link ${isActive ? "desktop-nav__link--active" : ""}`}
-                onClick={() => handleNavClick(link.href)}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </a>
@@ -77,91 +117,73 @@ export default function Navbar({ onQuoteClick }) {
           })}
         </nav>
 
-        {/* Action Button */}
+        {/* Primary Action Button */}
         <div className="navbar__actions">
           <a
             href="#contact"
-            className="btn btn--primary btn--sm nav-quote-btn"
-            onClick={() => handleNavClick("#contact")}
-            title="Request Quote"
+            className="btn btn--primary btn--nav"
+            onClick={(e) => handleNavClick(e, "#contact")}
           >
-            <span className="nav-quote-btn__text">Request Quote</span>
-            <span className="nav-quote-btn__text-mobile">Quote</span>
-            <ArrowRight size={14} aria-hidden="true" />
+            <span>Request Quote</span>
           </a>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle Button */}
           <button
             type="button"
             className="mobile-toggle"
-            aria-label={mobileMenuOpen ? "Close main menu" : "Open main menu"}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Navigation Drawer */}
       <div className={`mobile-drawer ${mobileMenuOpen ? "mobile-drawer--open" : ""}`} aria-hidden={!mobileMenuOpen}>
-        <div className="mobile-drawer__header">
-          <div className="brand brand--drawer">
-            <img
-              src="/mintaka-logo.png"
-              alt={`${COMPANY.name}`}
-              className="brand__logo-img brand__logo-img--drawer"
-            />
-          </div>
-          <button
-            type="button"
-            className="mobile-drawer__close"
-            aria-label="Close menu"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <X size={20} />
-          </button>
-        </div>
-
-        <nav className="mobile-drawer__nav" aria-label="Mobile Navigation">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="mobile-drawer__link"
-              onClick={() => handleNavClick(link.href)}
+        <div className="mobile-drawer__backdrop" onClick={() => setMobileMenuOpen(false)} />
+        <div className="mobile-drawer__panel">
+          <div className="mobile-drawer__top">
+            <span className="mobile-drawer__brand-title">{COMPANY.name}</span>
+            <button
+              type="button"
+              className="mobile-drawer__close"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close navigation"
             >
-              <span>{link.label}</span>
-              <ArrowRight size={16} className="mobile-drawer__arrow" aria-hidden="true" />
-            </a>
-          ))}
-        </nav>
+              <X size={20} />
+            </button>
+          </div>
 
-        <div className="mobile-drawer__footer">
-          <a
-            href="#contact"
-            className="btn btn--primary btn--full"
-            onClick={() => handleNavClick("#contact")}
-          >
-            <span>Request Custom Quote (RFQ)</span>
-            <ArrowRight size={16} aria-hidden="true" />
-          </a>
-          <div className="mobile-drawer__contact">
-            <p><strong>Direct Sales Desk:</strong></p>
-            <p><a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></p>
-            <p><a href={`tel:${COMPANY.phone}`}>{COMPANY.phone}</a></p>
+          <nav className="mobile-drawer__nav" aria-label="Mobile Navigation">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="mobile-drawer__link"
+                onClick={(e) => handleNavClick(e, link.href)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="mobile-drawer__footer">
+            <a
+              href="#contact"
+              className="btn btn--primary btn--full"
+              onClick={(e) => handleNavClick(e, "#contact")}
+            >
+              Request Custom Quote (RFQ)
+            </a>
+            <div className="mobile-drawer__contact">
+              <div>{COMPANY.phone}</div>
+              <div>{COMPANY.email}</div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Mobile Backdrop */}
-      {mobileMenuOpen && (
-        <div
-          className="mobile-backdrop"
-          onClick={() => setMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
     </header>
   );
 }

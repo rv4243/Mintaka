@@ -5,14 +5,12 @@ import TopBar from "./components/TopBar";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import AboutSection from "./components/AboutSection";
-import ProductsSection from "./components/ProductsSection";
 import TechnicalSpecsTable from "./components/TechnicalSpecsTable";
 import IndustriesSection from "./components/IndustriesSection";
 import WhyMintakaSection from "./components/WhyMintakaSection";
 import SustainabilitySection from "./components/SustainabilitySection";
 import SupplyChainSection from "./components/SupplyChainSection";
 import CertificationsSection from "./components/CertificationsSection";
-import FAQSection from "./components/FAQSection";
 import ContactRFQSection from "./components/ContactRFQSection";
 import Footer from "./components/Footer";
 
@@ -30,15 +28,13 @@ export default function App() {
     setPrefilledFamily(grade.family);
   };
 
-  const handleQuoteFamily = (familyCode) => {
-    setPrefilledFamily(familyCode);
-    setPrefilledGrade(null);
-  };
-
   const handleOpenRFQ = () => {
     const contactEl = document.getElementById("contact");
     if (contactEl) {
-      contactEl.scrollIntoView({ behavior: "smooth" });
+      const isMobile = window.innerWidth <= 900;
+      const navOffset = isMobile ? 74 : 94;
+      const targetY = contactEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
     }
   };
 
@@ -51,29 +47,13 @@ export default function App() {
       <Navbar onQuoteClick={handleOpenRFQ} />
 
       <main id="main-content">
-        {/* Hero Section */}
+        {/* 1. Home / Hero Section */}
         <Hero
           onSelectFamily={handleSelectFamily}
           onOpenRFQ={handleOpenRFQ}
         />
 
-        {/* About Company & Capabilities */}
-        <AboutSection />
-
-        {/* Products Showcase (PP, PE, PVC) */}
-        <ProductsSection
-          onSelectFamily={handleSelectFamily}
-          onQuoteFamily={handleQuoteFamily}
-        />
-
-        {/* Data-Heavy Interactive Technical Specifications Matrix */}
-        <TechnicalSpecsTable
-          selectedFamily={selectedFamily}
-          onSelectFamily={handleSelectFamily}
-          onQuoteGrade={handleQuoteGrade}
-        />
-
-        {/* Industries Served */}
+        {/* 2. Industries Served */}
         <IndustriesSection
           onSelectGrade={(gradeCode) => {
             // Find family from gradeCode
@@ -83,22 +63,29 @@ export default function App() {
           }}
         />
 
-        {/* Why Mintaka Pillars */}
+        {/* 3. Materials & Technical Specifications Matrix */}
+        <TechnicalSpecsTable
+          selectedFamily={selectedFamily}
+          onSelectFamily={handleSelectFamily}
+          onQuoteGrade={handleQuoteGrade}
+        />
+
+        {/* 5. Manufacturing Capabilities & Supply Infrastructure */}
+        <SupplyChainSection />
+
+        {/* Why Mintaka Pillars & Competitive Advantages */}
         <WhyMintakaSection />
 
-        {/* Sustainability & ESG */}
+        {/* Sustainability & ESG Commitments */}
         <SustainabilitySection />
 
-        {/* Supply Chain & Dispatch Workflow */}
-        <SupplyChainSection />
+        {/* 6. About Us - Company Heritage & Technical Highlights */}
+        <AboutSection />
 
         {/* Certifications & Compliance */}
         <CertificationsSection />
 
-        {/* Frequently Asked Questions */}
-        <FAQSection />
-
-        {/* Formal RFQ & Contact Center */}
+        {/* 7. Formal RFQ & Contact Center */}
         <ContactRFQSection
           key={`${prefilledGrade?.id || 'default'}-${prefilledFamily}`}
           prefilledGrade={prefilledGrade}

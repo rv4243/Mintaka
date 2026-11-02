@@ -1,7 +1,22 @@
-import { X, CheckCircle2, Send, Download, Layers, ShieldCheck, Factory } from "lucide-react";
+import { useEffect } from "react";
+import { X, Send, Download } from "lucide-react";
 import { COMPANY } from "../data/polymerData";
 
 export default function GradeDetailModal({ grade, isOpen, onClose, onQuoteGrade }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen || !grade) return null;
 
   const handleQuoteClick = () => {
@@ -11,12 +26,14 @@ export default function GradeDetailModal({ grade, isOpen, onClose, onQuoteGrade 
     onClose();
     const contactEl = document.getElementById("contact");
     if (contactEl) {
-      contactEl.scrollIntoView({ behavior: "smooth" });
+      const isMobile = window.innerWidth <= 900;
+      const navOffset = isMobile ? 74 : 94;
+      const targetY = contactEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
     }
   };
 
   const handleDownloadStub = () => {
-    // Generate a clean text datasheet download
     const content = `=====================================================
 MINTAKA POLYMERS - TECHNICAL DATA SHEET (TDS)
 =====================================================
@@ -51,7 +68,13 @@ Accreditation: ISO 9001:2015, ISO 14001:2015, REACH & RoHS
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="modal-grade-title">
+    <div
+      className="modal-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-grade-title"
+    >
       <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
         {/* Modal Header */}
         <div className="modal-header">
@@ -87,85 +110,63 @@ Accreditation: ISO 9001:2015, ISO 14001:2015, REACH & RoHS
           <div className="modal-props-grid">
             <div className="prop-card">
               <span className="prop-card__label">Melt Flow Index (MFI)</span>
-              <strong className="prop-card__value">{grade.mfi}</strong>
-              <span className="prop-card__test">ASTM D1238</span>
+              <strong className="prop-card__value tabular-num">{grade.mfi}</strong>
+              <span className="prop-card__method">ASTM D1238 (230°C/2.16kg)</span>
             </div>
-
             <div className="prop-card">
-              <span className="prop-card__label">Density / Bulk</span>
-              <strong className="prop-card__value">{grade.density}</strong>
-              <span className="prop-card__test">ASTM D792</span>
+              <span className="prop-card__label">Density / Specific Gravity</span>
+              <strong className="prop-card__value tabular-num">{grade.density}</strong>
+              <span className="prop-card__method">ASTM D792 / ISO 1183</span>
             </div>
-
             <div className="prop-card">
-              <span className="prop-card__label">Tensile Yield Strength</span>
-              <strong className="prop-card__value">{grade.tensileYield}</strong>
-              <span className="prop-card__test">ASTM D638</span>
+              <span className="prop-card__label">Tensile Strength @ Yield</span>
+              <strong className="prop-card__value tabular-num">{grade.tensileYield}</strong>
+              <span className="prop-card__method">ASTM D638 (50 mm/min)</span>
             </div>
-
             <div className="prop-card">
               <span className="prop-card__label">Flexural Modulus</span>
-              <strong className="prop-card__value">{grade.flexuralModulus}</strong>
-              <span className="prop-card__test">ASTM D790</span>
+              <strong className="prop-card__value tabular-num">{grade.flexuralModulus}</strong>
+              <span className="prop-card__method">ASTM D790 (1.3 mm/min)</span>
             </div>
           </div>
 
           <div className="modal-details-list">
-            <div className="detail-row">
-              <div className="detail-row__icon"><Factory size={16} /></div>
-              <div>
-                <strong>Recommended Processing Method:</strong>
-                <p>{grade.processing}</p>
-              </div>
+            <div className="modal-detail-row">
+              <strong className="modal-detail-key">Recommended Processing:</strong>
+              <span className="modal-detail-val">{grade.processing}</span>
             </div>
-
-            <div className="detail-row">
-              <div className="detail-row__icon"><Layers size={16} /></div>
-              <div>
-                <strong>Primary Target Applications:</strong>
-                <p>{grade.applications}</p>
-              </div>
+            <div className="modal-detail-row">
+              <strong className="modal-detail-key">Primary Applications:</strong>
+              <span className="modal-detail-val">{grade.applications}</span>
             </div>
-
-            <div className="detail-row">
-              <div className="detail-row__icon"><ShieldCheck size={16} /></div>
-              <div>
-                <strong>Key Performance Highlights:</strong>
-                <p>{grade.features}</p>
-              </div>
+            <div className="modal-detail-row">
+              <strong className="modal-detail-key">Additivation & Stabilization:</strong>
+              <span className="modal-detail-val">{grade.features}</span>
             </div>
-          </div>
-
-          <div className="modal-dispatch-info">
-            <div className="dispatch-badge">
-              <CheckCircle2 size={16} className="text-teal" />
-              <span>Full Certificate of Analysis (CoA) provided per dispatch lot</span>
-            </div>
-            <div className="dispatch-badge">
-              <CheckCircle2 size={16} className="text-teal" />
-              <span>Packaging: 25 kg multi-wall bags or 1,000 kg FIBC jumbo totes</span>
+            <div className="modal-detail-row">
+              <strong className="modal-detail-key">Quality Assurance:</strong>
+              <span className="modal-detail-val">Certified Lot-specific Certificate of Analysis (CoA) with batch traceability</span>
             </div>
           </div>
         </div>
 
-        {/* Modal Actions */}
+        {/* Modal Footer Actions */}
         <div className="modal-footer">
           <button
             type="button"
-            className="btn btn--secondary btn--sm"
+            className="btn btn--secondary btn--md"
             onClick={handleDownloadStub}
           >
-            <Download size={15} />
-            <span>Download Spec File</span>
+            <Download size={15} aria-hidden="true" />
+            <span>Download Spec Sheet</span>
           </button>
-
           <button
             type="button"
-            className="btn btn--primary btn--sm"
+            className="btn btn--primary btn--md"
             onClick={handleQuoteClick}
           >
-            <Send size={15} />
-            <span>Inquire for {grade.gradeCode}</span>
+            <Send size={15} aria-hidden="true" />
+            <span>Request Quote for {grade.gradeCode}</span>
           </button>
         </div>
       </div>

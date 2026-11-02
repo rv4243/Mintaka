@@ -1,5 +1,5 @@
-import { ArrowUp, Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "../data/polymerData";
+import mintakaLogoWhite from "../assets/mintaka-logo-white.png";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -9,38 +9,59 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleNavClick = (e, href) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (href === "#home" || href === "#top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const targetId = href.startsWith("#") ? href.substring(1) : href;
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      const isMobile = window.innerWidth <= 900;
+      const navOffset = isMobile ? 74 : 94;
+      const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="footer" aria-label="Site Footer">
-      <div className="container footer__container">
-        <div className="footer__grid">
-          {/* Column 1: Company Profile */}
-          <div className="footer__col footer__col--brand">
-            <div className="brand brand--footer">
-              <img
-                src="/mintaka-logo-white.png"
-                alt={`${COMPANY.name} - Advanced Polymers`}
-                className="brand__logo-img brand__logo-img--footer"
-              />
-            </div>
-
-            <p className="footer__bio">
-              A premier international supplier of certified Polypropylene (PP), Polyethylene (PE),
-              and Suspension PVC resins for precision industrial converters worldwide.
+      <div className="container footer__layout">
+        {/* Top Tier: Full-Width Brand Wordmark Close */}
+        <div className="footer__hero">
+          <div className="footer__brand">
+            <img
+              src={mintakaLogoWhite}
+              alt={`${COMPANY.name} - Engineered Resins`}
+              className="footer__logo-img"
+              width="210"
+              height="54"
+            />
+            <p className="footer__mission">
+              Certified supplier and exporter of prime PP, PE, and PVC resins for precision converters worldwide.
             </p>
-
-            <div className="footer__trust-badge">
-              <ShieldCheck size={16} className="text-teal" aria-hidden="true" />
-              <span>ISO 9001:2015 & ISO 14001:2015 Registered</span>
-            </div>
           </div>
 
-          {/* Column 2: Navigation Links */}
-          <div className="footer__col">
-            <h4 className="footer__heading">Quick Navigation</h4>
-            <ul className="footer__links">
+          <div className="footer__dispatch-badge">
+            <strong className="footer__dispatch-title">Distribution Terminal:</strong>
+            <p className="footer__dispatch-text">{COMPANY.address}</p>
+            <p className="footer__dispatch-hours">{COMPANY.dispatchHours}</p>
+          </div>
+        </div>
+
+        {/* Middle Tier: Navigation & Direct Technical Access */}
+        <div className="footer__nav-grid">
+          <div className="footer__nav-col">
+            <h4 className="footer__nav-heading">Navigation</h4>
+            <ul className="footer__nav-list">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="footer__link">
+                  <a
+                    href={link.href}
+                    className="footer__nav-link"
+                    onClick={(e) => handleNavClick(e, link.href)}
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -48,60 +69,55 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Polymer Families */}
-          <div className="footer__col">
-            <h4 className="footer__heading">Polymer Portfolio</h4>
-            <ul className="footer__links">
-              <li><a href="#specifications" className="footer__link">PP Homopolymer (H030 / H110)</a></li>
-              <li><a href="#specifications" className="footer__link">PP Impact & Random Copolymer</a></li>
-              <li><a href="#specifications" className="footer__link">HDPE Blow & Pipe (PE100)</a></li>
-              <li><a href="#specifications" className="footer__link">LDPE & LLDPE Film Grades</a></li>
-              <li><a href="#specifications" className="footer__link">PVC Suspension K-67 / K-57 / K-70</a></li>
-              <li><a href="#contact" className="footer__link">Custom Masterbatch & Compounds</a></li>
+          <div className="footer__nav-col">
+            <h4 className="footer__nav-heading">Polymer Portfolios</h4>
+            <ul className="footer__nav-list">
+              <li><a href="#products" onClick={(e) => handleNavClick(e, "#products")} className="footer__nav-link">PP Homopolymer (H030 / H110)</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, "#products")} className="footer__nav-link">PP Impact & Random Copolymer</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, "#products")} className="footer__nav-link">HDPE Blow & Pipe Resins (PE100)</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, "#products")} className="footer__nav-link">LDPE & LLDPE Film Grades</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, "#products")} className="footer__nav-link">Suspension PVC Resins (K67 / K57)</a></li>
+              <li><a href="#sustainability" onClick={(e) => handleNavClick(e, "#sustainability")} className="footer__nav-link">Post-Consumer Recycled (PCR) Resins</a></li>
             </ul>
           </div>
 
-          {/* Column 4: Contact & Dispatch */}
-          <div className="footer__col footer__col--contact">
-            <h4 className="footer__heading">Commercial Desk</h4>
-            <ul className="footer__contact-list">
-              <li>
-                <MapPin size={16} className="footer__icon" aria-hidden="true" />
-                <span>{COMPANY.address}</span>
-              </li>
-              <li>
-                <Mail size={16} className="footer__icon" aria-hidden="true" />
-                <a href={`mailto:${COMPANY.email}`} className="footer__link">
-                  {COMPANY.email}
-                </a>
-              </li>
-              <li>
-                <Phone size={16} className="footer__icon" aria-hidden="true" />
-                <a href={`tel:${COMPANY.phone.replace(/[^0-9+]/g, "")}`} className="footer__link">
-                  {COMPANY.phone}
-                </a>
-              </li>
-            </ul>
-
-            <div className="footer__hours">
-              <strong>Order Dispatch Hours:</strong>
-              <p>{COMPANY.dispatchHours}</p>
+          <div className="footer__nav-col footer__nav-col--contact">
+            <h4 className="footer__nav-heading">Commercial Desk</h4>
+            <p className="footer__contact-entry">
+              <span>Direct: </span>
+              <a href={`tel:${COMPANY.phone.replace(/[^0-9+]/g, "")}`} className="footer__contact-link">
+                {COMPANY.phone}
+              </a>
+            </p>
+            <p className="footer__contact-entry">
+              <span>Procurement: </span>
+              <a href={`mailto:${COMPANY.email}`} className="footer__contact-link">
+                {COMPANY.email}
+              </a>
+            </p>
+            <p className="footer__contact-entry">
+              <span>Technical QA: </span>
+              <a href={`mailto:${COMPANY.supportEmail}`} className="footer__contact-link">
+                {COMPANY.supportEmail}
+              </a>
+            </p>
+            <div className="footer__cert-notice">
+              ISO 9001:2015 & ISO 14001:2015 Registered Facility
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Tier: Legal, Quality Standard & Back to Top */}
         <div className="footer__bottom">
-          <div className="footer__bottom-left">
-            <span>© {CURRENT_YEAR} {COMPANY.name}. All rights reserved.</span>
-            <span className="footer__bottom-sep" aria-hidden="true">•</span>
-            <span>Commercial B2B Polymer Portal</span>
+          <div className="footer__copyright">
+            © {CURRENT_YEAR} {COMPANY.name}. All technical data sheets reflect standard test parameters per ASTM and ISO test methodologies.
           </div>
 
-          <a href="#top" className="footer__back-top" onClick={scrollToTop}>
-            <span>Back to top</span>
-            <ArrowUp size={15} aria-hidden="true" />
-          </a>
+          <div className="footer__bottom-links">
+            <a href="#top" onClick={scrollToTop} className="footer__back-top">
+              Back to Top ↑
+            </a>
+          </div>
         </div>
       </div>
     </footer>

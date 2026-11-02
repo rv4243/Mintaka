@@ -1,103 +1,72 @@
-import { Truck, Warehouse, Navigation, ShieldAlert, FileCheck, Package, CheckCircle2 } from "lucide-react";
-import { SUPPLY_CHAIN_CAPABILITIES } from "../data/polymerData";
-
 export default function SupplyChainSection() {
-  const iconList = [Warehouse, FileCheck, Navigation, ShieldAlert, Truck];
-
-  const workflowSteps = [
+  const steps = [
     {
-      step: "01",
-      title: "Order Release",
-      desc: "Instant ERP verification against live warehouse buffer.",
+      stage: "Procure",
+      subhead: "Refinery Allocation & Sourcing",
+      body: "Prime virgin feedstocks secured through direct petrochemical allocations, pre-screened for purity.",
     },
     {
-      step: "02",
-      title: "CoA Verification",
-      desc: "Batch MFI and density validation before seal release.",
+      stage: "Inbound Test",
+      subhead: "Pre-Production Screening",
+      body: "Incoming shipments quarantined and lab-tested for MFI, density, and moisture before release.",
     },
     {
-      step: "03",
-      title: "Palletizing & Seal",
-      desc: "Anti-slip shrink-wrapped 25kg bags or bulk tankers.",
+      stage: "Manufacture",
+      subhead: "Compounding & Extrusion",
+      body: "High-torque twin-screw compounding with precise thermal control for uniform additive dispersion.",
     },
     {
-      step: "04",
-      title: "Telemetry Transit",
-      desc: "Live GPS route tracking with automated arrival alerts.",
+      stage: "Quality Test",
+      subhead: "ASTM CoA Lot Certification",
+      body: "Post-extrusion ASTM validation ensuring ±0.2 MFI tolerance, recorded on a lot-specific CoA.",
+    },
+    {
+      stage: "Dispatch",
+      subhead: "Packaging & Logistics",
+      body: "Hermetically sealed 25kg bags, 1-ton bulk FIBCs, or tankers dispatched in 24–48 hours.",
     },
   ];
 
   return (
-    <section id="supply-chain" className="section supply-section">
+    <section id="manufacturing-capabilities" className="section supply-section" aria-label="Manufacturing and Supply Chain">
+      <span id="supply-chain" className="section-anchor" aria-hidden="true" />
       <div className="container">
-        <div className="section-head">
-          <div className="section-badge">
-            <Truck size={14} aria-hidden="true" />
-            <span>Logistics & Distribution</span>
+        {/* Newspaper Broadsheet Header */}
+        <header className="newspaper-header">
+          <div className="newspaper-meta">
+            <span className="newspaper-dateline">Central Dispatch Terminal</span>
+            <span className="newspaper-meta-sep">|</span>
+            <span className="newspaper-edition">Standard Operating Procedure</span>
+            <span className="newspaper-meta-sep">|</span>
+            <span className="newspaper-location">Hosur, Tamil Nadu, India</span>
           </div>
-          <h2 className="section-title">Agile Multi-Modal Distribution</h2>
-          <p className="section-subtitle">
-            Zero raw material bottlenecks with reserved buffers and live GPS transit tracking.
+
+          <h2 className="section-title newspaper-headline">
+            Manufacturing Infrastructure & Supply Reliability
+          </h2>
+
+          <p className="newspaper-subheadline">
+            Our 5-stage quality pipeline from raw procurement to plant gate delivery.
           </p>
+        </header>
+
+        {/* 5-Column Newspaper Editorial Columns */}
+        <div className="newspaper-grid">
+          {steps.map((step) => (
+            <article key={step.stage} className="newspaper-col">
+              <div className="newspaper-col__kicker">{step.stage}</div>
+              <h3 className="newspaper-col__title">{step.subhead}</h3>
+              <p className="newspaper-col__body">{step.body}</p>
+            </article>
+          ))}
         </div>
 
-        {/* 4-Step Fulfillment Flow */}
-        <div className="supply-flow">
-          <div className="supply-flow__title">
-            <Package size={16} aria-hidden="true" />
-            <span>Guaranteed Dispatch Workflow</span>
+        {/* Newspaper Editorial Footer Dispatch */}
+        <footer className="newspaper-footer">
+          <div className="newspaper-footer__note">
+            <strong>Terminal Buffer Commitment:</strong> 180,000 MT buffer capacity and 50-ton silo reserves protect your plant from market shortages.
           </div>
-          <div className="supply-flow__grid">
-            {workflowSteps.map((ws, i) => (
-              <div key={ws.step} className="flow-step">
-                <div className="flow-step__top">
-                  <span className="flow-step__num">{ws.step}</span>
-                  {i < workflowSteps.length - 1 && <span className="flow-step__line" aria-hidden="true" />}
-                </div>
-                <h4 className="flow-step__title">{ws.title}</h4>
-                <p className="flow-step__desc">{ws.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Capabilities Grid */}
-        <div className="supply-grid">
-          {SUPPLY_CHAIN_CAPABILITIES.map((cap, idx) => {
-            const IconComp = iconList[idx % iconList.length];
-            return (
-              <div key={cap.title} className="supply-card">
-                <div className="supply-card__icon-box" aria-hidden="true">
-                  <IconComp size={22} />
-                </div>
-                <div className="supply-card__content">
-                  <h3 className="supply-card__title">{cap.title}</h3>
-                  <p className="supply-card__desc">{cap.desc}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Logistics Assurance Callout */}
-        <div className="supply-callout">
-          <div className="supply-callout__left">
-            <h4>Need scheduled JIT delivery contracts?</h4>
-            <p>
-              We provide monthly rolling allocations and consignment buffer management for volume converters.
-            </p>
-          </div>
-          <div className="supply-callout__right">
-            <div className="supply-callout__perk">
-              <CheckCircle2 size={16} className="text-teal" />
-              <span>Dedicated Account Manager</span>
-            </div>
-            <div className="supply-callout__perk">
-              <CheckCircle2 size={16} className="text-teal" />
-              <span>48-Hour Emergency Buffer Dispatch</span>
-            </div>
-          </div>
-        </div>
+        </footer>
       </div>
     </section>
   );

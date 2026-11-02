@@ -6,7 +6,7 @@ export const COMPANY = {
   supportEmail: "techsupport@mintakapolymers.com",
   phone: "+91 91235 10506",
   whatsapp: "+91 91235 10506",
-  address: "SIPCOT Industrial Complex, Phase II, Hosur 635126, Tamil Nadu, India",
+  address: "Hosur, Tamil Nadu, India",
   city: "Hosur",
   state: "Tamil Nadu",
   country: "India",
@@ -17,14 +17,11 @@ export const COMPANY = {
 };
 
 export const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Products", href: "#products" },
-  { label: "Specifications", href: "#specifications" },
+  { label: "Home", href: "#home" },
   { label: "Industries", href: "#industries" },
-  { label: "Why Mintaka", href: "#why-mintaka" },
-  { label: "Sustainability", href: "#sustainability" },
-  { label: "Supply Chain", href: "#supply-chain" },
-  { label: "Certifications", href: "#certifications" },
+  { label: "Products & Specs", href: "#products" },
+  { label: "Manufacturing Capabilities", href: "#manufacturing-capabilities" },
+  { label: "About Us", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -279,37 +276,37 @@ export const INDUSTRIES_SERVED = [
 export const VALUE_PILLARS = [
   {
     title: "30+ Years Track Record",
-    lead: "Three decades of pure polymer expertise serving high-precision converters.",
+    lead: "Three decades of dependable resin supply for precision converters.",
     icon: "Award",
     metric: "Est. 1994",
   },
   {
     title: "Complete Resin Portfolio",
-    lead: "PP, PE (HDPE/LDPE/LLDPE), and Suspension PVC under one roof.",
+    lead: "Prime PP, PE, and PVC portfolios under one roof.",
     icon: "Layers",
     metric: "50+ Grades",
   },
   {
     title: "Batch-to-Batch Consistency",
-    lead: "Every dispatch verified by lot-specific Certificate of Analysis (CoA).",
+    lead: "Every dispatch verified by lot-specific Certificate of Analysis.",
     icon: "CheckCircle2",
     metric: "99.4% On-Spec",
   },
   {
     title: "Guaranteed Inventory Buffer",
-    lead: "Reserved allocation buffers protect your plant against market price spikes.",
+    lead: "Dedicated plant inventory protecting against spot shortages.",
     icon: "Factory",
     metric: "180k MT Capacity",
   },
   {
     title: "48-Hour Strategic Dispatch",
-    lead: "Multi-modal road, rail, and port logistics with live GPS telemetry.",
+    lead: "Fast road, rail, and sea freight logistics with live GPS.",
     icon: "Truck",
     metric: "24-48h Dispatch",
   },
   {
     title: "Application & Mold R&D",
-    lead: "In-house lab helps with MFI tuning, mold shrinkage, and cycle speed.",
+    lead: "Polymer chemists assisting with mold trials and cycle times.",
     icon: "Microscope",
     metric: "Direct Lab Support",
   },
@@ -318,52 +315,58 @@ export const VALUE_PILLARS = [
 export const SUSTAINABILITY_PILLARS = [
   {
     title: "PCR-Infused Blends",
-    desc: "Up to 50% certified post-consumer recycled compound with zero drop in tensile strength.",
+    desc: "Certified post-consumer recycled compound with zero drop in tensile strength.",
     stat: "Up to 50%",
     statLabel: "PCR Content",
   },
   {
     title: "Zero Pellet Loss",
-    desc: "Strict Operation Clean Sweep® containment across all storage and bulk transit points.",
+    desc: "Strict Operation Clean Sweep® containment across all storage and bulk transit.",
     stat: "0%",
     statLabel: "Pellet Loss",
   },
   {
     title: "Lower Carbon Footprint",
-    desc: "ISO 50001 energy-optimized compounding and warehouse solar micro-generation.",
+    desc: "Energy-optimized compounding powered by warehouse solar generation.",
     stat: "-28%",
     statLabel: "Carbon Intensity",
   },
   {
     title: "Mono-Material Transition",
-    desc: "Drop-in PE/PP formulations replacing multi-layer films with 100% recyclable structures.",
+    desc: "Drop-in mono-material formulations replacing multi-layer packaging.",
     stat: "100%",
     statLabel: "Recyclable",
   },
 ];
 
-export const SUPPLY_CHAIN_CAPABILITIES = [
+export const MANUFACTURING_CAPABILITIES = [
   {
-    title: "Strategic Warehousing",
-    desc: "Dust-sealed hubs situated along major port corridors and industrial belts.",
+    title: "Precision Compounding & Blending",
+    desc: "High-torque twin-screw compounding lines for custom masterbatches, flame retardants, UV packages, and PCR-infused formulations.",
   },
   {
-    title: "Real-Time Lot Traceability",
-    desc: "Barcode-tracked inventory from manufacturing line to your unloading dock.",
+    title: "ASTM / ISO Testing Laboratory",
+    desc: "Fully equipped in-house QA lab delivering batch verification for Melt Flow Index (±0.2 MFI), tensile modulus, density, and ash content.",
   },
   {
-    title: "GPS Telemetry Fleet",
-    desc: "Dedicated container fleet with live route tracking and delivery alerts.",
+    title: "Automated Packaging & Bagging",
+    desc: "Dust-controlled pneumatic packaging outputting tamper-evident 25kg moisture-barrier valve bags and 1,000kg FIBC jumbo sacks.",
   },
   {
-    title: "Safety Buffer SLA",
-    desc: "Guaranteed rolling backup inventory to eliminate plant line stoppages.",
+    title: "Clean Pellet Silos & Storage",
+    desc: "Dedicated bulk storage silos adhering strictly to Operation Clean Sweep® containment, eliminating cross-contamination.",
   },
   {
-    title: "Paperless Documentation",
-    desc: "Instant digital e-Way bills, tax invoices, and batch CoA downloads.",
+    title: "Real-Time Lot Traceability & CoAs",
+    desc: "End-to-end QR/barcode lot tracking from compounding runs to your loading dock, accompanied by verified lot-specific Certificates of Analysis.",
+  },
+  {
+    title: "Guaranteed Buffer Stock SLA",
+    desc: "180,000+ MT annual volume backed by rolling inventory buffers in our Hosur, Tamil Nadu, India hub to prevent factory downtime.",
   },
 ];
+
+export const SUPPLY_CHAIN_CAPABILITIES = MANUFACTURING_CAPABILITIES;
 
 export const CERTIFICATIONS_LIST = [
   {
